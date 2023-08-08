@@ -1,6 +1,8 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 
+import GameCard from './GameCard.vue';
+
 const pokeArrState = ref([]);
 
 const formatPokemonData = (data) => {
@@ -73,9 +75,10 @@ onMounted(() => {
             </p>
 
             <div className="gameCards-grid">
-                <li v-for="pokemon in pokeArrState">
-                    {{ pokemon.name }}
-                </li>
+                <GameCard v-for="pokemon in pokeArrState"
+                    :name="pokemon.name"
+                    :sprite="pokemon.sprite"
+                />
             </div>
      </section>
 </template>
