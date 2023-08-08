@@ -1,0 +1,319 @@
+// Variables
+////////////////////////////////////////////////
+
+$primaryFont: 'Heebo', sans-serif;;
+$secondaryFont: 'Pokemon Fire Red', sans-serif;
+
+$brandWhite: #FEFEFE;
+$brandBlack: #111;
+$brandLightGreen: #73AB84;
+$brandDarkGreen: #4D805C;
+$brandGold: #D1AC00;
+
+$contentWidth: 1140px;
+$contentSidePadding: 20px;
+
+
+// Site Base
+////////////////////////////////////////////////
+
+body{
+    color: $brandBlack;
+    font-family: $primaryFont;
+    background-color: $brandLightGreen;
+    line-height: 1.4;
+    height: 100%;
+
+    .wrap{
+        margin: 0 auto;
+        max-width: $contentWidth;
+        width: 100%;
+    }
+    
+    .screen-reader-text{
+        border: 0;
+        clip: rect(1px, 1px, 1px, 1px);
+        -webkit-clip-path: inset(50%);
+        clip-path: inset(50%);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute !important;
+        width: 1px;
+        word-wrap: normal !important;
+    }
+    
+    h1{
+        font-size: 34px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    
+    h2{
+        margin: 0px 0px 16px;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    
+    h3{
+        margin: 0px 0px 16px;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    
+    p{
+        margin: 0px 0px 20px;
+        font-size: 18px;
+    }
+    
+    @media all and (max-width: 768px) {
+    
+        h1{
+            font-size: 28px;
+        }
+    
+        h2{
+            font-size: 26px;
+        }
+    
+        h3{
+            font-size: 24px;
+        }
+    
+        p{
+            font-size: 16px;
+        }
+    
+    }
+
+}
+
+// Header
+////////////////////////////////////////////////
+
+.site-header{
+    padding: 10px $contentSidePadding;
+    background-color: $brandDarkGreen;
+    color: $brandWhite;
+
+    &__inner{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 40px;
+        row-gap: 16px;
+    }
+
+    h1{
+        margin: 0px;
+    }
+
+    @media all and (max-width: 576px) {
+        &__inner{
+            flex-direction: column;
+        }
+
+        h1{
+            text-align: center;
+        }
+    }
+
+}
+
+// Scoreboard
+////////////////////////////////////////////////
+
+.scoreboard{
+    color: $brandWhite;
+
+    p{
+        margin: 0px 0px 5px;
+        font-size: 20px;
+        font-weight: 600;
+
+        &:last-of-type{
+            margin: 0px;
+        }
+
+    }
+
+    @media all and (max-width: 576px) {
+        text-align: center;
+    }
+
+}
+
+// Main Content
+////////////////////////////////////////////////
+
+.main-content{
+    position: relative;
+    z-index: 1;
+    padding: 0px $contentSidePadding;
+}
+
+// GameBody
+////////////////////////////////////////////////
+
+.gameBody{
+    padding: 70px 0px;
+}
+
+.gameCards-grid{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 30px
+}
+
+.gameCard{
+    position: relative;
+    padding: 5px 10px;
+    background-color: $brandWhite;
+    border: 3px solid $brandGold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform .3s ease-in-out;
+
+    &:hover{
+        transform: translateY(-6px);
+    }
+
+    &::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: .06;
+        background-image: url('/assets/img/pokeball.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    &__inner{
+        position: relative;
+        z-index: 2;
+    }
+
+    p{
+        text-transform: uppercase;
+    }
+
+}
+
+@media all and (max-width: 1024px) {
+
+    .gameCards-grid{
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+}
+
+@media all and (max-width: 768px) {
+
+    .gameBody{
+        padding: 50px 0px;
+    }
+
+    .gameCards-grid{
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    .gameCard{
+        padding: 5px 6px;
+    }
+
+}
+
+@media all and (max-width: 576px) {
+
+    .gameCards-grid{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+}
+
+// Modal
+////////////////////////////////////////////////
+
+.ReactModal__Overlay {
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+    background-color: rgba(0,0,0,.7)!important;
+    padding: 20px;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
+
+.gameModal{
+    opacity: 0;
+    transform: translateY(-150px);
+    transition: transform 200ms ease-in-out, 
+                opacity 200ms ease-in-out;
+    background-color: $brandWhite;
+    border: 3px solid $brandGold;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+
+    .ReactModal__Overlay--after-open &{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+
+    &__inner{
+        text-align: center; 
+
+        p{
+            margin: 0px;
+        }
+
+    }
+
+    &__close{
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        height: 45px;
+        width: 45px;
+        background-color: $brandWhite;
+        border: 3px solid $brandGold;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        font-size: 26px;
+        cursor: pointer;
+        transition: color 200ms ease-in-out,
+                    background-color 200ms ease-in-out;
+
+
+        &:hover,
+        &:focus{
+            color: $brandWhite;
+            background-color: $brandGold;
+        }
+        
+    }
+
+}
