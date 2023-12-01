@@ -1,9 +1,10 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
-defineProps({
+const props = defineProps({
     name: String,
-    sprite: String
+    sprite: String,
+    gameId: String
 });
 
 const emit = defineEmits(['trigger']);
@@ -18,8 +19,17 @@ const triggerButton = () => {
         return;
     }
 
-    emit('trigger', false);
+    emit('trigger', true);
 };
+
+watch(() => props.gameId, (oldgameId, newGameId) => {
+    // console.log(oldgameId);
+    // console.log(newGameId);
+    // console.log('hello');
+    if( oldgameId !== newGameId ){
+        clicked.value = false;
+    }
+});
 
 console.log(`is clicked: ${clicked.value}`);
 

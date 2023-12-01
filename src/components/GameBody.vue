@@ -3,6 +3,12 @@ import { onMounted, ref } from 'vue'
 
 import GameCard from './GameCard.vue';
 
+defineProps({
+    gameId: String
+})
+
+const emit = defineEmits(['updateScore']);
+
 const pokeArrState = ref([]);
 
 const formatPokemonData = (data) => {
@@ -28,7 +34,10 @@ const triggerCard = (reset) => {
     console.log(newPokeArr);
     pokeArrState.value = [...newPokeArr];
 
+    console.log("body, reset: " + reset);
+
     // updateScore(reset);
+    emit('updateScore', reset);
 };
 
 onMounted(() => {
@@ -87,6 +96,7 @@ onMounted(() => {
                     :name="pokemon.name"
                     :sprite="pokemon.sprite"
                     :key="pokemon.name"
+                    :gameId="gameId"
                     @trigger="triggerCard"
                 />
             </div>

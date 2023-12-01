@@ -3,7 +3,7 @@ import Scoreboard from "./Scoreboard.vue";
 
 defineProps({
   score: Number,
-  highSchore: Number,
+  highScore: Number,
 });
 
 </script>

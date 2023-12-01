@@ -2,7 +2,7 @@
 
 defineProps({
   score: Number,
-  highSchore: Number,
+  highScore: Number,
 });
 </script>
 
