@@ -23,6 +23,14 @@ const shuffle = (array) => {
     return array;
 };
 
+const triggerCard = (reset) => {
+    const newPokeArr = shuffle(pokeArrState.value);
+    console.log(newPokeArr);
+    pokeArrState.value = [...newPokeArr];
+
+    // updateScore(reset);
+};
+
 onMounted(() => {
     const getPokemonData = async (id) => {
         try {
@@ -78,6 +86,8 @@ onMounted(() => {
                 <GameCard v-for="pokemon in pokeArrState"
                     :name="pokemon.name"
                     :sprite="pokemon.sprite"
+                    :key="pokemon.name"
+                    @trigger="triggerCard"
                 />
             </div>
      </section>
