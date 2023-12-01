@@ -1,17 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import Scoreboard from "./Scoreboard.vue";
 
 defineProps({
-  msg: String,
-})
+  score: Number,
+  highSchore: Number,
+});
 
-const count = ref(0);
 </script>
 
 <template>
     <header class="site-header">
         <div class="site-header__inner wrap">
             <h1>Pokémon Memory Game</h1>
+
+            <Scoreboard :score="score" :highScore="highScore" />
         </div>
     </header>
 </template>
