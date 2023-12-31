@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 import uniqid from "uniqid";
 
@@ -12,9 +12,6 @@ const score = ref(0);
 const highScore = ref(0);
 const gameId = ref( uniqid() );
 
-// const [score, setScore] = useState(0);
-// const [highScore, setHighScore] = useState(0);
-// const [gameId, setGameId] = useState(uniqid());
 
 const updateScore = (reset) => {
   console.log("this is app");
@@ -27,8 +24,12 @@ const updateScore = (reset) => {
       return;
   }
 
-  // setScore(score + 1);
   score.value = score.value + 1;
+
+  // Check if high score needs to be updated
+  if( score.value > highScore.value){
+    highScore.value = highScore.value + 1;
+  }
 };
 
 const resetGame = () => {
