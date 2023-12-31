@@ -1,7 +1,11 @@
 import { createApp } from "vue";
+import { createVfm } from "vue-final-modal";
 import App from "./App.vue";
 
 import "./assets/scss/app.scss";
 import "normalize.css";
 
-createApp(App).mount("#app");
+const app = createApp(App);
+
+const vfm = createVfm();
+app.use(vfm).mount("#app");
