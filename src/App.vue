@@ -15,36 +15,37 @@ const score = ref(0);
 const highScore = ref(0);
 const gameId = ref( uniqid() );
 
+const modalTitle = ref("Game Over");
+const modalMessage = ref('<p>Your score was ' + score.value + '/12</p>');
+
 const resetGame = () => {
   score.value = 0;
   gameId.value = uniqid();
 };
 
+
 const { open, close } = useModal({  
   component: GameModal,
   attrs: {
-    title: 'Game Over',
+    title: modalTitle,
     onConfirm() {
       close();
       resetGame();
     },
   },
   slots: {
-    default: '<p>Your score was </p>',
+    default: modalMessage,
   },
 });
 
 
 const updateScore = (reset) => {
-  console.log("this is app");
-  console.log(reset);
   if (reset) {
-      // setModalOpen(true);
-      // console.log("game over");
-      // alert("game over");
-      open();
-      // resetGame();
-      return;
+    modalTitle.value = "Game Over";
+    modalMessage.value = '<p>Your score was ' + score.value + '/12</p>';    
+
+    open();
+    return;
   }
 
   score.value = score.value + 1;
@@ -52,6 +53,14 @@ const updateScore = (reset) => {
   // Check if high score needs to be updated
   if( score.value > highScore.value){
     highScore.value = highScore.value + 1;
+  }
+
+  // Check if they won
+  if( score.value === 12){
+    modalTitle.value = "You Win";
+    modalMessage.value = '<p>Your score was ' + score.value + '/12</p>';    
+
+    open();
   }
 };
 

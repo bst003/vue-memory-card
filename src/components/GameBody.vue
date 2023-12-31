@@ -34,8 +34,6 @@ const triggerCard = (reset) => {
     console.log(newPokeArr);
     pokeArrState.value = [...newPokeArr];
 
-    console.log("body, reset: " + reset);
-
     // updateScore(reset);
     emit('updateScore', reset);
 };

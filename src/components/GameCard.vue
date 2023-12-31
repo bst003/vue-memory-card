@@ -12,7 +12,6 @@ const emit = defineEmits(['trigger']);
 const clicked = ref(false);
 
 const triggerButton = () => {
-    console.log(clicked.value);
     if (clicked.value === false) {
         clicked.value = true;
         emit('trigger', false);
@@ -23,9 +22,6 @@ const triggerButton = () => {
 };
 
 watch(() => props.gameId, (oldgameId, newGameId) => {
-    // console.log(oldgameId);
-    // console.log(newGameId);
-    // console.log('hello');
     if( oldgameId !== newGameId ){
         clicked.value = false;
     }

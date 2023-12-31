@@ -16,7 +16,7 @@ const emit = defineEmits(['confirm']);
     content-transition="vfm-fade"
   >
     <h1>{{ title }}</h1>
-
+    <slot />
     <button @click="emit('confirm')">
       Confirm
     </button>
