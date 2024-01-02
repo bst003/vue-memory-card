@@ -1,3 +1,3 @@
 # Vue Pokemon Memory card game
 
-<a href="https://main--astounding-croquembouche-a070fa.netlify.app/">View the project on Netlify</a>
+<a href="https://vue-poke-memory-card.netlify.app/">View the project on Netlify</a>
